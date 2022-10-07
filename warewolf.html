@@ -24,6 +24,24 @@
         gap: 20px;
         font-family: Arial, Helvetica, sans-serif;
       }
+      .cardBox {
+        background-color: rgb(202, 255, 217);
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        width: 40%;
+        border-radius: 0.5rem;
+      }
+      .cardBox > p {
+        text-align: center;
+        padding: 1.2rem;
+        font-size: 1.2rem;
+        color: rgb(48, 106, 64);
+      }
+      p > strong {
+        font-size: 1.3rem;
+        font-weight: 800;
+      }
       .card {
         background-color: #fff;
         padding: 3rem 1rem;
@@ -61,16 +79,19 @@
         <form action="" id="formInput">
           <fieldset>
             <input type="text" name="nama" id="nama" />
+            <p class="error"></p>
             <select name="peran" id="peran">
               <option value="">--Pilih Peran--</option>
               <option value="penyihir">Penyihir</option>
               <option value="guard">Guard</option>
               <option value="warewolf">Warewolf</option>
             </select>
+            <p class="slcErr"></p>
             <button type="submit">Submit</button>
           </fieldset>
         </form>
       </div>
+      <div class="cardBox"></div>
     </div>
     <!--
   Kita akan memasuki dunia game werewolf.
@@ -90,19 +111,44 @@
         });
       });
 
-      function checkInput() {
-        const nama = document.getElementById("nama").value;
-        const peran = document.getElementById("peran").value;
-        const info = document.querySelector(".info");
+      let cardBox = document.querySelector(".cardBox");
 
+      function checkInput() {
+        let txtErr = document.querySelector(".error");
+        let slcErr = document.querySelector(".slcErr");
+        let nama = document.getElementById("nama").value;
+        let peran = document.getElementById("peran").value;
         if (nama === null || nama.match(/^ *$/) !== null) {
-          alert("Nama harus di isi !");
+          txtErr.innerText = "📢 Nama harus diisi!";
+          txtErr.style.color = "red";
+          txtErr.style.display = "block";
+          slcErr.style.display = "none";
+          cardBox.style.display = "hidden";
+          cardBox.innerHTML = "";
         } else if (peran === null || peran.match(/^ *$/) !== null) {
-          alert("Pilih Peranmu untuk memulai game!");
+          slcErr.innerText = "📢 Pilih Peranmu untuk memulai game";
+          txtErr.style.display = "none";
+          slcErr.style.color = "red";
+          slcErr.style.display = "block";
+          cardBox.style.display = "hidden";
+          cardBox.innerHTML = "";
         } else {
-          alert(`Yaay, nama anda ${nama} dengan peran ${peran} sudah terisi, Let's Play The Games`);
+          txtErr.style.display = "none";
+          cardBox.style.display = "block";
+          slcErr.style.display = "none";
+          cardBox.innerHTML = "";
+          cardBox.insertAdjacentHTML(
+            "beforeend",
+            `
+            
+              <p class="sucTxt">Yaay  🎉, nama anda <strong>${nama}</strong> dengan peran  <strong>${peran} </strong> sudah terisi, Let's Play The Games 🎮</p>
+    
+          `
+          );
+          // alert(`Yaay, nama anda ${nama} dengan peran ${peran} sudah terisi, Let's Play The Games`);
         }
       }
+      let txtErr = document.querySelector(".error");
     </script>
   </body>
 </html>
