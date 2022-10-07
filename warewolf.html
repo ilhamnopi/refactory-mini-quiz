@@ -30,10 +30,7 @@
         width: 40%;
         border-radius: 1rem;
         box-shadow: 1px 0px 5px 4px rgba(45, 45, 45, 0.4);
-      }
-
-      .card .success {
-        background-color: ;
+        position: relative;
       }
       fieldset {
         display: flex;
@@ -91,18 +88,21 @@
           event.preventDefault();
           checkInput();
         });
-        function checkInput() {
-          const nama = document.getElementById("nama").value;
-          const peran = document.getElementById("peran").value;
-          if (nama === null || nama.match(/^ *$/) !== null) {
-            alert("Nama harus diisi!");
-          } else if (peran === null || peran.match(/^ *$/) !== null) {
-            alert("Pilih Peranmu untuk memulai game");
-          } else {
-            alert(`Yaay, nama anda ${nama} dengan peran ${peran} sudah terisi, Let's Play The Games`);
-          }
-        }
       });
+
+      function checkInput() {
+        const nama = document.getElementById("nama").value;
+        const peran = document.getElementById("peran").value;
+        const info = document.querySelector(".info");
+
+        if (nama === null || nama.match(/^ *$/) !== null) {
+          alert("Nama harus di isi !");
+        } else if (peran === null || peran.match(/^ *$/) !== null) {
+          alert("Pilih Peranmu untuk memulai game!");
+        } else {
+          alert(`Yaay, nama anda ${nama} dengan peran ${peran} sudah terisi, Let's Play The Games`);
+        }
+      }
     </script>
   </body>
 </html>
