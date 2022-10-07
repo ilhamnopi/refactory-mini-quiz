@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Warewolf</title>
+    <style>
+      *,
+      *::after,
+      *::before {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      div.field-box {
+        width: 100%;
+        min-height: 100vh;
+        background-color: rgb(15, 25, 47);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .card {
+        background-color: #fff;
+        padding: 3rem 1rem;
+        width: 40%;
+        border-radius: 1rem;
+        box-shadow: 1px 0px 5px 4px rgba(45, 45, 45, 0.4);
+      }
+      fieldset {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 1rem;
+        width: 100%;
+        border: none;
+      }
+      input,
+      select,
+      button {
+        padding: 0 1rem;
+        width: 100%;
+        height: 3rem;
+        border-radius: 0.5rem;
+      }
+      button {
+        background-color: rgb(29, 101, 255);
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="field-box">
+      <div class="card">
+        <form action="" id="formInput">
+          <fieldset>
+            <input type="text" name="nama" id="nama" />
+            <select name="peran" id="peran">
+              <option value="">--Pilih Peran--</option>
+              <option value="penyihir">Penyihir</option>
+              <option value="guard">Guard</option>
+              <option value="warewolf">Warewolf</option>
+            </select>
+            <button type="submit">Submit</button>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+    <!--
+  Kita akan memasuki dunia game werewolf.
+	1. Pada saat akan bermain anda diminta memasukkan nama dan peran
+	2. Untuk memulai game pemain harus memasukkan variable nama dan peran.
+	3. Jika pemain tidak memasukkan nama maka game akan mengeluarkan warning “Nama harus diisi!“.
+	4. Jika pemain memasukkan nama tapi tidak memasukkan peran maka game akan mengeluarkan warning “Pilih Peranmu untuk memulai game“.
+	5. Terdapat tiga peran yaitu penyihir, guard, dan werewolf.
+	6. Tugas anda adalah membuat program untuk mengecek input dari pemain dan hasil response dari game sesuai input yang dikirimkan.
+-->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("formInput");
+        form.addEventListener("submit", function (event) {
+          event.preventDefault();
+          checkInput();
+        });
+        function checkInput() {
+          const nama = document.getElementById("nama").value;
+          const peran = document.getElementById("peran").value;
+          if (nama === null || nama.match(/^ *$/) !== null) {
+            alert("Nama harus diisi!");
+          } else if (peran === null || peran.match(/^ *$/) !== null) {
+            alert("Pilih Peranmu untuk memulai game");
+          } else {
+            alert("Yaay, Peran dan nama sudah terisi, Let's Play The Games");
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
